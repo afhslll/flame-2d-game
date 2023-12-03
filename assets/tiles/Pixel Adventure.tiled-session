@@ -3,10 +3,34 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "Level-01.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
+        "Level-01.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1.0204,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 321.9325754606037,
+                "y": 333.20266562132497
+            }
+        },
+        "Level-02.tmx": {
+            "scale": 0.8017,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 347.3868030435325,
+                "y": 319.32144193588624
+            }
+        },
+        "Pixel Adventure.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
     },
     "last.imagePath": "/Users/afifahsalimi/Development/flame-2d-game/assets/images/Terrain",
     "map.height": 23,
@@ -15,9 +39,13 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
+        "Pixel Adventure.tsx",
+        "Level-01.tmx"
     ],
     "project": "Pixel Adventure.tiled-project",
     "recentFiles": [
+        "Pixel Adventure.tsx",
+        "Level-01.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

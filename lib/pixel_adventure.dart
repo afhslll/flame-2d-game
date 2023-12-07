@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -14,7 +13,7 @@ class PixelAdventure extends FlameGame
   Player player = Player(character: 'Mask Dude');
   List<String> levelNames = ['Level-01', 'Level-02'];
   late JoystickComponent joystick;
-  bool showControls = true;
+  bool showControls = false;
 
   int currentLevelIndex = 0;
 

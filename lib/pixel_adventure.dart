@@ -8,7 +8,11 @@ import 'package:flame_2d_game/components/player.dart';
 import 'package:flutter/painting.dart';
 
 class PixelAdventure extends FlameGame
-    with HasKeyboardHandlerComponents, DragCallbacks {
+    with
+        HasKeyboardHandlerComponents,
+        DragCallbacks,
+        HasCollisionDetection,
+        TapCallbacks {
   late CameraComponent cam;
   Player player = Player(character: 'Mask Dude');
   List<String> levelNames = ['Level-01', 'Level-02'];

@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_2d_game/components/collission_block.dart';
 import 'package:flame_2d_game/components/custom_hitbox.dart';
+import 'package:flame_2d_game/components/fruit.dart';
 import 'package:flame_2d_game/components/utils.dart';
 import 'package:flame_2d_game/pixel_adventure.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +34,7 @@ class Player extends SpriteAnimationGroupComponent
   Vector2 velocity = Vector2.zero();
   bool isOnGround = false;
   bool hasJumped = false;
+  bool reachedCheckpoint = false;
   List<CollissionBlock> collissionBlocks = [];
   CustomHitbox hitbox =
       CustomHitbox(offsetX: 10, offsetY: 4, width: 14, height: 28);
@@ -43,7 +45,7 @@ class Player extends SpriteAnimationGroupComponent
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    // debugMode = true;
+    debugMode = true;
 
     startingPosition = Vector2(position.x, position.y);
 
@@ -59,11 +61,13 @@ class Player extends SpriteAnimationGroupComponent
     accumulatedTime += dt;
 
     while (accumulatedTime >= fixedDeltaTime) {
-      _updatePlayerState();
-      _updatePlayerMovement();
-      _checkHorizontalCollissions();
-      _applyGravity();
-      _checkVerticalCollissions();
+      if (!reachedCheckpoint) {
+        _updatePlayerState();
+        _updatePlayerMovement();
+        _checkHorizontalCollissions();
+        _applyGravity();
+        _checkVerticalCollissions();
+      }
 
       accumulatedTime -= fixedDeltaTime;
     }
@@ -85,6 +89,15 @@ class Player extends SpriteAnimationGroupComponent
     hasJumped = keysPressed.contains(LogicalKeyboardKey.space);
 
     return super.onKeyEvent(event, keysPressed);
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (!reachedCheckpoint) {
+      if (other is Fruit) other.collidedWithPlayer();
+    }
+    super.onCollisionStart(intersectionPoints, other);
   }
 
   void _loadAllAnimations() {

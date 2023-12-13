@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame_2d_game/components/background_tile.dart';
 import 'package:flame_2d_game/components/collission_block.dart';
+import 'package:flame_2d_game/components/fruit.dart';
 import 'package:flame_2d_game/components/player.dart';
+import 'package:flame_2d_game/pixel_adventure.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-class Level extends World {
+class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
   final Player player;
 
@@ -20,6 +23,7 @@ class Level extends World {
 
     add(level);
 
+    _scrollingBackground();
     _spawningObjects();
     _addCollissions();
 
@@ -36,6 +40,14 @@ class Level extends World {
             player.position = Vector2(spawnPoint.x, spawnPoint.y);
             player.scale.x = 1;
             add(player);
+            break;
+          case 'Fruit':
+            final fruit = Fruit(
+              fruit: spawnPoint.name,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(fruit);
             break;
           default:
         }
@@ -69,5 +81,19 @@ class Level extends World {
       }
     }
     player.collissionBlocks = collissionBlocks;
+  }
+
+  void _scrollingBackground() {
+    final backgroundLayer = level.tileMap.getLayer('Background');
+
+    if (backgroundLayer != null) {
+      final backgroundColor =
+          backgroundLayer.properties.getValue('BackgroundColor');
+      final backgroundTile = BackgroundTile(
+        color: backgroundColor ?? 'Gray',
+        position: Vector2(0, 0),
+      );
+      add(backgroundTile);
+    }
   }
 }

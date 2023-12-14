@@ -51,7 +51,7 @@
   <object id="34" type="Platform" x="48" y="128" width="48" height="16"/>
  </objectgroup>
  <objectgroup id="2" name="Spawnpoints" class="Player">
-  <object id="7" name="Player" type="Player" x="224" y="240" width="31.3239" height="30.4696"/>
+  <object id="7" name="Player" type="Player" x="128" y="240" width="31.3239" height="30.4696"/>
   <object id="35" name="Apple" type="Fruit" x="64" y="96" width="32" height="32"/>
   <object id="40" name="Bananas" type="Fruit" x="64" y="176" width="32" height="32"/>
   <object id="41" name="Bananas" type="Fruit" x="160" y="144" width="32" height="32"/>

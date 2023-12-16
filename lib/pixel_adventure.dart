@@ -15,7 +15,7 @@ class PixelAdventure extends FlameGame
         TapCallbacks {
   late CameraComponent cam;
   Player player = Player(character: 'Mask Dude');
-  List<String> levelNames = ['Level-01', 'Level-02'];
+  List<String> levelNames = ['Level-01', 'Level-01'];
   late JoystickComponent joystick;
   bool showControls = false;
 
@@ -94,5 +94,17 @@ class PixelAdventure extends FlameGame
 
       addAll([cam, world]);
     });
+  }
+
+  void loadNextLevel() {
+    removeWhere((component) => component is Level);
+
+    if (currentLevelIndex < levelNames.length - 1) {
+      currentLevelIndex++;
+      _loadLevel();
+    } else {
+      currentLevelIndex = 0;
+      _loadLevel();
+    }
   }
 }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_2d_game/components/jump_button.dart';
 import 'package:flame_2d_game/components/level.dart';
 import 'package:flame_2d_game/components/player.dart';
 import 'package:flutter/painting.dart';
@@ -17,7 +18,7 @@ class PixelAdventure extends FlameGame
   Player player = Player(character: 'Mask Dude');
   List<String> levelNames = ['Level-01', 'Level-01'];
   late JoystickComponent joystick;
-  bool showControls = false;
+  bool showControls = true;
 
   int currentLevelIndex = 0;
 
@@ -32,6 +33,7 @@ class PixelAdventure extends FlameGame
 
     if (showControls) {
       addJoystick();
+      add(JumpButton());
     }
 
     return super.onLoad();

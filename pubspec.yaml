@@ -76,6 +76,7 @@ flutter:
     - assets/images/Background/
     - assets/images/Items/Fruits/
     - assets/images/Items/Checkpoints/Checkpoint/
+    - assets/images/Enemies/Chicken/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

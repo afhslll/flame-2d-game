@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_2d_game/components/checkpoint.dart';
+import 'package:flame_2d_game/components/chicken.dart';
 import 'package:flame_2d_game/components/collission_block.dart';
 import 'package:flame_2d_game/components/custom_hitbox.dart';
 import 'package:flame_2d_game/components/fruit.dart';
@@ -60,7 +61,7 @@ class Player extends SpriteAnimationGroupComponent
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    debugMode = true;
+    // debugMode = true;
 
     startingPosition = Vector2(position.x, position.y);
 
@@ -113,6 +114,7 @@ class Player extends SpriteAnimationGroupComponent
     if (!reachedCheckpoint) {
       if (other is Fruit) other.collidedWithPlayer();
       if (other is Saw) _respawn();
+      if (other is Chicken) other.collidedWithPlayer();
       if (other is Checkpoint) _reachedCheckpoint();
     }
     super.onCollisionStart(intersectionPoints, other);
@@ -295,5 +297,9 @@ class Player extends SpriteAnimationGroupComponent
 
     const waitToChangeDuration = Duration(seconds: 3);
     Future.delayed(waitToChangeDuration, () => game.loadNextLevel());
+  }
+
+  void collidedWithEnemy() {
+    _respawn();
   }
 }
